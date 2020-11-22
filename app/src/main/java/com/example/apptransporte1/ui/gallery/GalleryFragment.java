@@ -108,7 +108,6 @@ public class GalleryFragment extends Fragment {
     }
 
     private void showdialog() {
-
         progressDoalog = new ProgressDialog(getActivity());
         progressDoalog.setMessage("Its loading....");
         progressDoalog.setTitle("ProgressDialog bar example");

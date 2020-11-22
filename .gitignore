@@ -48,3 +48,9 @@ Thumbs.db
 *.mov
 *.wmv
 
+local.properties
+local.properties
+.gradle/6.5/fileHashes/fileHashes.bin
+.gradle/6.5/fileHashes/fileHashes.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/buildOutputCleanup/outputFiles.bin

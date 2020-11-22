@@ -18,13 +18,38 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.apptransporte1.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
-    <fragment
         android:id="@+id/incidenciaFragment"
         android:name="com.example.apptransporte1.IncidenciaFragment"
         android:label="fragment_incidencia"
         tools:layout="@layout/fragment_incidencia" />
+    <fragment
+        android:id="@+id/gestinarSaldoFragment"
+        android:name="com.example.apptransporte1.GestinarSaldoFragment"
+        android:label="Gestinar Saldo"
+        tools:layout="@layout/fragment_gestinar_saldo" >
+        <action
+            android:id="@+id/action_gestinarSaldoFragment_to_transferirFragment"
+            app:destination="@id/transferirFragment" />
+        <action
+            android:id="@+id/action_gestinarSaldoFragment_to_recargarFragment"
+            app:destination="@id/recargarFragment" />
+        <action
+            android:id="@+id/action_gestinarSaldoFragment_to_metodosdePagoFragment"
+            app:destination="@id/metodosdePagoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/recargarFragment"
+        android:name="com.example.apptransporte1.RecargarFragment"
+        android:label="Recargar Saldo"
+        tools:layout="@layout/fragment_recargar" />
+    <fragment
+        android:id="@+id/transferirFragment"
+        android:name="com.example.apptransporte1.TransferirFragment"
+        android:label="Transferir Saldo"
+        tools:layout="@layout/fragment_transferir" />
+    <fragment
+        android:id="@+id/metodosdePagoFragment"
+        android:name="com.example.apptransporte1.MetodosdePagoFragment"
+        android:label="Metodos de Pago"
+        tools:layout="@layout/fragment_metodosde_pago" />
 </navigation>

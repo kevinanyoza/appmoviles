@@ -20,8 +20,12 @@
     <fragment
         android:id="@+id/incidenciaFragment"
         android:name="com.example.apptransporte1.IncidenciaFragment"
-        android:label="fragment_incidencia"
-        tools:layout="@layout/fragment_incidencia" />
+        android:label="Menu Incidencias"
+        tools:layout="@layout/fragment_incidencia" >
+        <action
+            android:id="@+id/action_incidenciaFragment_to_reportarIncidencias"
+            app:destination="@id/reportarIncidencias" />
+    </fragment>
     <fragment
 
         android:id="@+id/gestinarSaldoFragment"
@@ -68,5 +72,10 @@
         android:name="com.example.apptransporte1.ui.pasajes.Generarqr"
         android:label="Generar QR"
         tools:layout="@layout/fragment_generarqr" />
+    <fragment
+        android:id="@+id/reportarIncidencias"
+        android:name="com.example.apptransporte1.ReportarIncidencias"
+        android:label="Registro de  Incidencias"
+        tools:layout="@layout/fragment_reportar_incidencias" />
 
 </navigation>

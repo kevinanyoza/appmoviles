@@ -4,12 +4,14 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,18 +23,25 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.apptransporte1.MainActivity;
 import com.example.apptransporte1.R;
+import com.example.apptransporte1.domain.Usuario;
+import com.google.gson.Gson;
+import com.google.gson.internal.$Gson$Preconditions;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GalleryFragment extends Fragment {
 
@@ -45,6 +54,12 @@ public class GalleryFragment extends Fragment {
     Button btnTransferir;
     Button btnBuscar;
     TextView txtnombre;
+    TextView txtsaldo;
+    //Cambiar usuario logueado en este string .......
+    // Validar que el saldo de usuario logueado debe ser menor al monto ingresado.
+    // Lo mejor es que siempre haya una tabla "recarga" para tener un historial.
+    String usuarioLogueado = "15487623";
+    Usuario usuarioTransferir;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -64,6 +79,7 @@ public class GalleryFragment extends Fragment {
         btnTransferir = root.findViewById(R.id.btnTransferir);
         btnBuscar = root.findViewById(R.id.btnBuscar);
         txtnombre = root.findViewById(R.id.txtnombre);
+/*    txtsaldo  = root.findViewById(R.id.txtsaldo);*/
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,9 +87,17 @@ public class GalleryFragment extends Fragment {
             }
         });
 
+        btnTransferir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MostrarAlerta();
+            }
+        });
+
         return root;
 
     }
+
 
     private void buscarcodigo() {
         String codigo = txtCodigo.getText().toString();
@@ -87,7 +111,10 @@ public class GalleryFragment extends Fragment {
                     List<String> items = new ArrayList<>();
                     for (int i = 0; i < arreglo.length(); i++) {
                         JSONObject objeto = arreglo.getJSONObject(i);
-                    txtnombre.setText("nombre: "+objeto.getString("nombres"));
+                        Log.i("galeria fragment",objeto.toString());
+                        usuarioTransferir = new Gson().fromJson(objeto.toString(), Usuario.class);
+                        txtnombre.setText(usuarioTransferir.getNombres()+" "+usuarioTransferir.getPaterno()+" "+usuarioTransferir.getMaterno());
+                       /* txtsaldo.setText("S/. " + usuario.getSaldo());*/
                     }
 
 
@@ -104,16 +131,181 @@ public class GalleryFragment extends Fragment {
                 Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
+        RequestQueue cola = Volley.newRequestQueue(getActivity());
+        cola.add(peticion);
     }
 
     private void showdialog() {
         progressDoalog = new ProgressDialog(getActivity());
-        progressDoalog.setMessage("Its loading....");
-        progressDoalog.setTitle("ProgressDialog bar example");
+        progressDoalog.setMessage("Obteniendo Datos");
+        progressDoalog.setTitle("Espere por favor");
         progressDoalog.show();
     }
 
+     private void   MostrarAlerta(){
+         // get alert_dialog.xml view
+         LayoutInflater li = LayoutInflater.from(getActivity());
+         View promptsView = li.inflate(R.layout.alerta, null);
+
+         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                 getActivity());
+
+         // set alert_dialog.xml to alertdialog builder
+         alertDialogBuilder.setView(promptsView);
+
+         final EditText userInput = (EditText) promptsView.findViewById(R.id.etUserInput);
+
+         // set dialog message
+         alertDialogBuilder
+                 .setCancelable(false)
+                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                     public void onClick(DialogInterface dialog, int id) {
+                         // get user input and set it to result
+                         // edit text
+                         validarContrasena(userInput.getText().toString());
+                     }
+                 })
+                 .setNegativeButton("Cancel",
+                         new DialogInterface.OnClickListener() {
+                             public void onClick(DialogInterface dialog, int id) {
+                                 dialog.cancel();
+                             }
+                         });
+
+         // create alert dialog
+         AlertDialog alertDialog = alertDialogBuilder.create();
+
+         // show it
+         alertDialog.show();
+     }
+
+    private void validarContrasena(String value) {
+       String url = "http://aplicacionanyoza.atwebpages.com/index.php/usuario";
+        showdialog();
+        StringRequest peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray arreglo = new JSONArray(response);
+                    List<String> items = new ArrayList<>();
+                    if (arreglo.length() > 0) {
+                        progressDoalog.dismiss();
+                        actualizaMontoRecarga (txtMonto.getText().toString());
+                    }else {
+                        progressDoalog.dismiss();
+                        Toast.makeText (getActivity(), "Contraseña incorrecta, intente nuevamente", Toast.LENGTH_SHORT).show();
+                    }
+
+                } catch (JSONException e) {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        },  new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+        }){
+
+        @Override
+        protected Map<String,String> getParams(){
+            Map<String,String> params = new HashMap<String, String>();
+            params.put("idUsuario", usuarioLogueado);
+            params.put("clave",value);
+            return params;
+        }};
+
+        RequestQueue cola = Volley.newRequestQueue(getActivity());
+        cola.add(peticion);
+
+
+    }
+
+
+
+    private void actualizaMontoRecarga (String monto){
+        int montoRecarga = Integer.parseInt(monto);
+        int montoActual = Integer.parseInt(usuarioTransferir.getSaldo());
+
+        int resultado =  montoRecarga + montoActual;
+
+        String url = "http://aplicacionanyoza.atwebpages.com/index.php/usuario/recarga";
+        showdialog();
+        StringRequest peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    progressDoalog.dismiss();
+                    actualizaMontoOrigen (txtMonto.getText().toString());
+                } catch (Exception e) {
+                    progressDoalog.dismiss();
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        },  new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+        }){
+
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("idUsuario", usuarioTransferir.getIdUsuario());
+                params.put("saldo", ""+resultado);
+                return params;
+            }};
+
+        RequestQueue cola = Volley.newRequestQueue(getActivity());
+        cola.add(peticion);
+
+    }
+
+
+    private void actualizaMontoOrigen (String monto){
+        String url = "http://aplicacionanyoza.atwebpages.com/index.php/usuario/recarga/origen";
+        showdialog();
+        StringRequest peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+
+                    Toast.makeText(getActivity(), "Transferencia correcta", Toast.LENGTH_SHORT).show();
+                    progressDoalog.dismiss();
+                } catch (Exception e) {
+                    progressDoalog.dismiss();
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        },  new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+
+        }){
+
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("idUsuario", usuarioLogueado);
+                params.put("saldo", ""+ monto);
+                return params;
+            }};
+
+        RequestQueue cola = Volley.newRequestQueue(getActivity());
+        cola.add(peticion);
+
+    }
 
 }
 

@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GestinarSaldoFragment"
-    android:orientation="vertical"
-    android:background="#9AE8E0">
+    android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
 

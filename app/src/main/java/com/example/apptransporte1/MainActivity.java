@@ -1,5 +1,6 @@
 package com.example.apptransporte1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         String id_usuario = getIntent().getStringExtra("id_usuario");
+        //final String ejemplo = id_usuario;
         String correo = getIntent().getStringExtra("correo");
         String nombres = getIntent().getStringExtra("nombres");
         //Toast.makeText(this, id_usuario, Toast.LENGTH_SHORT).show();
@@ -98,6 +100,10 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
+        //Intent intent = new Intent(getApplicationContext(), RecargarFragment.class);
+        //intent.putExtra("id_usuario", ejemplo);
+
+        //startActivity(intent);
 
 
     }

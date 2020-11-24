@@ -58,7 +58,7 @@ public class GalleryFragment extends Fragment {
     //Cambiar usuario logueado en este string .......
     // Validar que el saldo de usuario logueado debe ser menor al monto ingresado.
     // Lo mejor es que siempre haya una tabla "recarga" para tener un historial.
-    String usuarioLogueado = "15487623";
+    String usuarioLogueado = "1";
     Usuario usuarioTransferir;
 
     public View onCreateView(@NonNull LayoutInflater inflater,

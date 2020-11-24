@@ -40,6 +40,8 @@ public class RecargarFragment extends Fragment {
         txtMontoRecarga = vista.findViewById(R.id.txtMontoRecarga);
         btnRecarga = vista.findViewById(R.id.btnRecarga);
 
+       // String id_usuario = getIntent().getStringExtra("id_usuario");
+
         btnRecarga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +56,8 @@ public class RecargarFragment extends Fragment {
 
     private void RecargarSaldo() {
         String recarga = txtMontoRecarga.getText().toString();
+        String id_usuario = "1";
+
         if (recarga.equals("")) {
             validacion();
         } else {
@@ -75,7 +79,8 @@ public class RecargarFragment extends Fragment {
                 protected Map<String, String> getParams() throws AuthFailureError {
                     Map<String, String> parametro = new HashMap<>();
                     parametro.put("saldo", recarga);
-                    return super.getParams();
+                    parametro.put("usuario", id_usuario);
+                    return parametro;
                 }
             };
             RequestQueue cola = Volley.newRequestQueue(getActivity());

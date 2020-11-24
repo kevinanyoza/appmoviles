@@ -15,7 +15,9 @@ dist/
 
 # Log files
 *.log
-
+*.bin
+*.lock
+*.properties
 # Package files
 *.jar
 
@@ -47,6 +49,12 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+*.properties
 
-local.properties
-local.properties
+
+*.properties
+.gradle/6.5/fileHashes/fileHashes.bin
+.gradle/6.5/fileHashes/fileHashes.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/buildOutputCleanup/outputFiles.bin
+

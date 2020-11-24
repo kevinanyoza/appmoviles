@@ -24,7 +24,7 @@
             android:title="Gestionar Saldo" />
         <item
             android:id="@+id/incidenciaFragment"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_incidencia"
             android:title="@string/menu_incidencias" />
     </group>
 </menu>

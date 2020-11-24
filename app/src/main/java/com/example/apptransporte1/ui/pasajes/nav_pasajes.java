@@ -32,10 +32,6 @@ public class nav_pasajes extends Fragment {
 
     }
 
-    private void asignarReferencias() {
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

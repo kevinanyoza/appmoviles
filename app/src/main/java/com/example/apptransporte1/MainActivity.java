@@ -43,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    //String id_usuario = getIntent().getStringExtra("id_usuario");
+    //String correo = getIntent().getStringExtra("correo");
+    //String nombres = getIntent().getStringExtra("nombres");
+
+    TextView txtcorreo, txtnombre ;
 
 
 
@@ -50,6 +55,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        String id_usuario = getIntent().getStringExtra("id_usuario");
+        String correo = getIntent().getStringExtra("correo");
+        String nombres = getIntent().getStringExtra("nombres");
+        //Toast.makeText(this, id_usuario, Toast.LENGTH_SHORT).show();
+        //txtcorreo = (TextView) findViewById(R.id.txtcorreomenu);
+
+        //txtcorreo.setText("hola");
+
+        //NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -63,6 +81,11 @@ public class MainActivity extends AppCompatActivity {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.txtcorreomenu);
+        TextView navnombres = (TextView) headerView.findViewById(R.id.txtnombresmenu);
+        navUsername.setText(correo);
+        navnombres.setText(nombres);
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
 
@@ -74,11 +97,15 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -86,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onSupportNavigateUp() {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }

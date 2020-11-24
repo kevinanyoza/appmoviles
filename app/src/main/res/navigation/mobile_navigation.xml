@@ -26,7 +26,7 @@
 
         android:id="@+id/gestinarSaldoFragment"
         android:name="com.example.apptransporte1.GestinarSaldoFragment"
-        android:label="Gestinar Saldo"
+        android:label="Gestionar Saldo"
         tools:layout="@layout/fragment_gestinar_saldo" >
         <action
             android:id="@+id/action_gestinarSaldoFragment_to_transferirFragment"
@@ -57,7 +57,7 @@
     <fragment
         android:id="@+id/nav_pasajes"
         android:name="com.example.apptransporte1.ui.pasajes.nav_pasajes"
-        android:label="fragment_nav_pasajes"
+        android:label="Comprar Pasajes"
         tools:layout="@layout/fragment_nav_pasajes" >
         <action
             android:id="@+id/action_nav_pasajes_to_generarqr"
@@ -66,7 +66,7 @@
     <fragment
         android:id="@+id/generarqr"
         android:name="com.example.apptransporte1.ui.pasajes.Generarqr"
-        android:label="fragment_generarqr"
+        android:label="Generar QR"
         tools:layout="@layout/fragment_generarqr" />
 
 </navigation>

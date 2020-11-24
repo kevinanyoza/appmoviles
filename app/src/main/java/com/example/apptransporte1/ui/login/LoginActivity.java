@@ -22,15 +22,18 @@ import com.example.apptransporte1.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
 
    EditText usuario, password;
-   Button btnlogin;
+   Button btnlogin,btnregistro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,12 +46,22 @@ public class LoginActivity extends AppCompatActivity {
         usuario = findViewById(R.id.txtusuario);
         password = findViewById(R.id.txtpassword);
         btnlogin = findViewById(R.id.btningresar);
+        btnregistro = findViewById(R.id.btnregistrar);
         btnlogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Toast.makeText(LoginActivity.this, "hi", Toast.LENGTH_SHORT).show();
                 validarUsuario();
 
+            }
+        });
+
+
+        btnregistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), UserRegister.class);
+                startActivity(intent);
             }
         });
 
@@ -67,8 +80,22 @@ public class LoginActivity extends AppCompatActivity {
 
                   JSONArray arreglo = new JSONArray(response);
 
+
                   if(arreglo.length() > 0){
+
+                      List<String> items = new ArrayList<>();
+                      for( int i = 0 ; i < arreglo.length(); i++){
+                          JSONObject objeto = arreglo.getJSONObject(i);
+                          items.add(objeto.getString("id_usuario"));
+                          items.add(objeto.getString("nombres"));
+                          items.add(objeto.getString("correo"));
+                      }
+
+                      //Toast.makeText(LoginActivity.this, items.get(0), Toast.LENGTH_SHORT).show();
                       Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                      intent.putExtra("id_usuario", items.get(0));
+                      intent.putExtra("nombres", items.get(1));
+                      intent.putExtra("correo", items.get(2));
                       startActivity(intent);
                       //Toast.makeText(LoginActivity.this, "buena", Toast.LENGTH_SHORT).show();
                   }else{
@@ -99,5 +126,8 @@ public class LoginActivity extends AppCompatActivity {
         requestQueue.add(stringRequest);
 
     }
+
+
+
 
 }

@@ -1,37 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.gallery.GalleryFragment"
+    android:layout_margin="40dp"
 
-    android:layout_margin="40dp">
+    android:background="@color/white"
+    android:backgroundTint="@color/white"
+    android:foregroundTint="@color/white"
+    tools:context=".ui.gallery.GalleryFragment">
 
     <Button
         android:id="@+id/btnTransferir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="84dp"
+        android:foregroundTint="#FFFFFF"
+        android:selectAllOnFocus="true"
+        android:shadowColor="#FFFFFF"
         android:text="Transeferir"
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </Button>
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="#FFFFFF"></Button>
 
     <EditText
         android:id="@+id/txtMonto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:backgroundTint="#FFFFFF"
         android:ems="10"
+        android:foregroundTint="#FFFFFF"
         android:hint="Monto"
         android:inputType="number"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/btnTransferir"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </EditText>
+        app:layout_constraintStart_toStartOf="parent"></EditText>
 
     <EditText
         android:id="@+id/txtCodigo"
@@ -39,8 +51,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
         android:ems="10"
-        android:inputType="textPersonName"
         android:hint="Codigo"
+        android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,7 +73,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:foregroundTint="#FFFFFF"
         android:text="Buscar"
+
+        android:textColor="#FFFFFF"
+        android:textColorHighlight="#FFFFFF"
+        android:textColorLink="#FFFFFF"
+        app:iconTint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCodigo">

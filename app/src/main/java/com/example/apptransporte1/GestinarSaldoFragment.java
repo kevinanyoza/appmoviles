@@ -42,7 +42,7 @@ public class GestinarSaldoFragment extends Fragment {
         btnTransferir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.transferirFragment);
+                Navigation.findNavController(v).navigate(R.id.nav_gallery);
             }
         });
         btnMetodos.setOnClickListener(new View.OnClickListener() {

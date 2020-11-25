@@ -31,6 +31,8 @@
         android:ems="10"
         android:hint="Usuario"
         android:inputType="textPersonName"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
@@ -46,6 +48,8 @@
         android:ems="10"
         android:hint="Clave"
         android:inputType="textPassword"
+        android:textColor="@color/black"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtusuario" />

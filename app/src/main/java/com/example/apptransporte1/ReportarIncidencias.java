@@ -54,6 +54,8 @@ public class ReportarIncidencias extends Fragment {
         spincidencias = v.findViewById(R.id.spincidencia);
         sptransporte =v.findViewById(R.id.sptransporte);
         btnenviarinc = v.findViewById(R.id.btnenviarinci);
+        String id_usuario = getActivity().getIntent().getStringExtra("id_usuario");//este es el id del usuario iniciado
+        Toast.makeText(getActivity(), "hola"+id_usuario, Toast.LENGTH_SHORT).show();
 
         btnenviarinc.setOnClickListener(new View.OnClickListener() {
             @Override

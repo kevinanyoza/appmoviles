@@ -16,6 +16,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.example.apptransporte1.ui.gallery.GalleryFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -57,8 +58,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        String id_usuario = getIntent().getStringExtra("id_usuario");
+
         //final String ejemplo = id_usuario;
+        String id_usuario = getIntent().getStringExtra("id_usuario");
         String correo = getIntent().getStringExtra("correo");
         String nombres = getIntent().getStringExtra("nombres");
         //Toast.makeText(this, id_usuario, Toast.LENGTH_SHORT).show();
@@ -100,8 +102,12 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        //Intent intent = new Intent(getApplicationContext(), RecargarFragment.class);
-        //intent.putExtra("id_usuario", ejemplo);
+        Intent intent = new Intent(getApplicationContext(), RecargarFragment.class);
+        intent.putExtra("id_usuario",id_usuario );
+        Intent intent2 = new Intent(getApplicationContext(), ReportarIncidencias.class);
+        intent2.putExtra("id_usuario",id_usuario );
+        Intent intent3 = new Intent(getApplicationContext(), GalleryFragment.class);
+        intent3.putExtra("id_usuario",id_usuario );
 
         //startActivity(intent);
 

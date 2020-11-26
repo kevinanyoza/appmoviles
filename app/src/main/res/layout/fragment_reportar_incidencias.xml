@@ -49,6 +49,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+
         android:entries="@array/incidencia"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,6 +64,7 @@
         android:gravity="start|top"
         android:hint="Ingrese Descripcion"
         android:inputType="textMultiLine"
+        android:singleLine="true"
         android:textColor="@color/blanco"
         android:textColorHint="@color/cardview_dark_background"
         android:textStyle="bold"

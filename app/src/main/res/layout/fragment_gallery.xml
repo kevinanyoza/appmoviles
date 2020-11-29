@@ -18,7 +18,7 @@
         android:foregroundTint="#FFFFFF"
         android:selectAllOnFocus="true"
         android:shadowColor="#FFFFFF"
-        android:text="Transeferir"
+        android:text="Transferir"
         android:textColor="#FFFFFF"
         android:textColorHighlight="#FFFFFF"
         android:textColorLink="#FFFFFF"

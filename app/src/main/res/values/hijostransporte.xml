@@ -6,4 +6,35 @@
         <item>Tren</item>
         <item>Metropolitano</item>
     </string-array>
+
+
+    <string-array name="asientos">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string-array name="rutas">
+        <item>Amancaes</item>
+        <item>La Colonia</item>
+        <item>Madrid</item>
+        <item>L. Prado</item>
+        <item>G. Republicana</item>
+        <item>Chira</item>
+        <item>Viru</item>
+        <item>Ica</item>
+        <item>Moquegua</item>
+        <item>Ilo</item>
+        <item>Bolivia</item>
+        <item>España</item>
+        <item>Tarma</item>
+        <item>Saco Oliveros</item>
+        <item>Ramon Dagnino</item>
+    </string-array>
+
+
+
+
 </resources>

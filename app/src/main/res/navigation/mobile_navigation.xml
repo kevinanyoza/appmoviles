@@ -77,5 +77,10 @@
         android:name="com.example.apptransporte1.ReportarIncidencias"
         android:label="Registro de  Incidencias"
         tools:layout="@layout/fragment_reportar_incidencias" />
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.example.apptransporte1.MapsFragment"
+        android:label="Ubicaciones"
+        tools:layout="@layout/fragment_maps" />
 
 </navigation>

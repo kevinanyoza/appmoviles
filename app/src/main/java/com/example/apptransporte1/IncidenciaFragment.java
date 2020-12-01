@@ -14,41 +14,41 @@ import android.widget.Button;
 
 
 public class IncidenciaFragment extends Fragment {
-
-
-
+    Button btnreportarinc ,btnlistinc;
 
     public IncidenciaFragment() {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_incidencia, container, false);
-        return view;
+        View v = inflater.inflate(R.layout.fragment_incidencia, container, false);
+        btnreportarinc = v.findViewById(R.id.btnreportinc);
+        btnreportarinc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(v).navigate(R.id.reportarIncidencias);
+            }
+        });
 
+        btnlistinc = v.findViewById(R.id.btnlistinc);
+        btnlistinc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+             //   Navigation.findNavController(v).navigate(R.id.listarIncidencia);
+            }
+        });
+
+
+        return v;
     }
-
-
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
 
-            Button btnreportarinc ,btnlistinc;
 
-            btnreportarinc = view.findViewById(R.id.btnreportinc);
-            btnreportarinc.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Navigation.findNavController(v).navigate(R.id.reportarIncidencias);
-                }
-            });
 
         }
-
-
-
 }

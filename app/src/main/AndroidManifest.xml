@@ -3,7 +3,7 @@
     package="com.example.apptransporte1">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppTransporte1"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.login.UserRegister"></activity>
+        <activity android:name=".ListarIncidencia"></activity>
+        <activity android:name=".ui.login.UserRegister" />
         <activity android:name=".ui.login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +24,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/Theme.AppTransporte1.NoActionBar"></activity>
+            android:theme="@style/Theme.AppTransporte1.NoActionBar" />
     </application>
 
 </manifest>

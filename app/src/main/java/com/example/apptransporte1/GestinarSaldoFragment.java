@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import static com.example.apptransporte1.R.id.recargarFragment;
+
 
 public class GestinarSaldoFragment extends Fragment {
 
@@ -36,7 +38,7 @@ public class GestinarSaldoFragment extends Fragment {
         btnRecargar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Navigation.findNavController(v).navigate(R.id.recargarFragment);
+                Navigation.findNavController(v).navigate(recargarFragment);
             }
         });
         btnTransferir.setOnClickListener(new View.OnClickListener() {

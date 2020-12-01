@@ -17,6 +17,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.apptransporte1.ui.gallery.GalleryFragment;
+import com.example.apptransporte1.ui.pasajes.Generarqr;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -63,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         String id_usuario = getIntent().getStringExtra("id_usuario");
         String correo = getIntent().getStringExtra("correo");
         String nombres = getIntent().getStringExtra("nombres");
+        String montototal = getIntent().getStringExtra("monto_total");
         //Toast.makeText(this, id_usuario, Toast.LENGTH_SHORT).show();
         //txtcorreo = (TextView) findViewById(R.id.txtcorreomenu);
 
@@ -108,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
         intent2.putExtra("id_usuario",id_usuario );
         Intent intent3 = new Intent(getApplicationContext(), GalleryFragment.class);
         intent3.putExtra("id_usuario",id_usuario );
+        Intent intent4 = new Intent(getApplicationContext(), Generarqr.class);
+        intent4.putExtra("id_usuario",id_usuario );
+        Intent intent5 = new Intent(getApplicationContext(), Generarqr.class);
+        intent5.putExtra("monto_total",montototal );
 
         //startActivity(intent);
 

@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -40,9 +41,11 @@ import java.util.Map;
 public class ReportarIncidencias extends Fragment {
 
     EditText txtdescrip;
-    Button btnenviarinc ,foto ;
+    Button btnenviarinc;
     Spinner spincidencias, sptransporte;
     ImageView picture;
+    ImageButton btnfoto;
+
 
 
     private static final int REQUEST_PERMISSION_CAMERA = 101;
@@ -55,7 +58,6 @@ public class ReportarIncidencias extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -69,12 +71,12 @@ public class ReportarIncidencias extends Fragment {
         sptransporte =v.findViewById(R.id.sptransporte);
         btnenviarinc = v.findViewById(R.id.btnenviarinci);
         picture = v.findViewById(R.id.picture);
-        foto = v.findViewById(R.id.btncamera);
+        btnfoto = v.findViewById(R.id.btnfoto);
         String id_usuario = getActivity().getIntent().getStringExtra("id_usuario");//este es el id del usuario iniciado
         Toast.makeText(getActivity(), "hola"+id_usuario, Toast.LENGTH_SHORT).show();
 
 
-        foto.setOnClickListener(new View.OnClickListener() {
+        btnfoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -92,16 +94,12 @@ public class ReportarIncidencias extends Fragment {
 
         });
 
-
-
         btnenviarinc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 registrarIncidencia();
             }
         });
-
-
 
         //registrarIncidencia();
         return v;
@@ -118,7 +116,6 @@ public class ReportarIncidencias extends Fragment {
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

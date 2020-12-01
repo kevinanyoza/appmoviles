@@ -14,7 +14,7 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="30dp"
         android:text="Tipo Transporte"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -59,7 +59,7 @@
         android:id="@+id/txtdescripcioninc"
         android:layout_width="343dp"
         android:layout_height="97dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:ems="10"
         android:gravity="start|top"
         android:hint="Ingrese Descripcion"
@@ -76,29 +76,34 @@
         android:id="@+id/btnenviarinci"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:layout_marginTop="30dp"
         android:text="Enviar"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.566"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btncamera" />
+        app:layout_constraintTop_toBottomOf="@+id/btnfoto" />
 
     <ImageView
         android:id="@+id/picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
+        android:layout_marginTop="30dp"
         android:layout_marginEnd="23dp"
-        app:layout_constraintEnd_toStartOf="@+id/btncamera"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtdescripcioninc"
         tools:src="@tools:sample/avatars" />
 
-    <Button
-        android:id="@+id/btncamera"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
+    <ImageButton
+        android:id="@+id/btnfoto"
+        android:layout_width="222dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_menu_camera"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/picture" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

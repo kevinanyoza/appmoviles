@@ -41,14 +41,14 @@ public class RecargarFragment extends Fragment {
         btnRecarga = vista.findViewById(R.id.btnRecarga);
 
         String id_usuario = getActivity().getIntent().getStringExtra("id_usuario");//este es el id del usuario iniciado
-        Toast.makeText(getActivity(), "hola"+id_usuario, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "hola"+id_usuario, Toast.LENGTH_SHORT).show();
        // String id_usuario = getIntent().getStringExtra("id_usuario");
 
         btnRecarga.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                RecargarSaldo();
+                RecargarSaldo(id_usuario);
 
             }
         });
@@ -57,9 +57,9 @@ public class RecargarFragment extends Fragment {
 
     }
 
-    private void RecargarSaldo() {
+    private void RecargarSaldo(String id_usuario) {
         String recarga = txtMontoRecarga.getText().toString();
-        String id_usuario = "1";
+        //String id_usuario = "1";
 
         if (recarga.equals("")) {
             validacion();

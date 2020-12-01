@@ -73,7 +73,7 @@ public class ReportarIncidencias extends Fragment {
         picture = v.findViewById(R.id.picture);
         btnfoto = v.findViewById(R.id.btnfoto);
         String id_usuario = getActivity().getIntent().getStringExtra("id_usuario");//este es el id del usuario iniciado
-        Toast.makeText(getActivity(), "hola"+id_usuario, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "hola"+id_usuario, Toast.LENGTH_SHORT).show();
 
 
         btnfoto.setOnClickListener(new View.OnClickListener() {

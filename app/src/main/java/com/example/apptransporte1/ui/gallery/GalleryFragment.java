@@ -55,10 +55,11 @@ public class GalleryFragment extends Fragment {
     Button btnBuscar;
     TextView txtnombre;
     TextView txtsaldo;
+
     //Cambiar usuario logueado en este string .......
     // Validar que el saldo de usuario logueado debe ser menor al monto ingresado.
     // Lo mejor es que siempre haya una tabla "recarga" para tener un historial.
-    String usuarioLogueado = "1";
+    //String usuarioLogueado = "1";
     Usuario usuarioTransferir;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -68,7 +69,7 @@ public class GalleryFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
         final TextView textView = root.findViewById(R.id.editTextNumber);
         String id_usuario = getActivity().getIntent().getStringExtra("id_usuario");//este es el id del usuario iniciado
-        Toast.makeText(getActivity(), "hola"+id_usuario, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), "hola"+id_usuario, Toast.LENGTH_SHORT).show();
 
 
         galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
@@ -94,7 +95,7 @@ public class GalleryFragment extends Fragment {
         btnTransferir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MostrarAlerta();
+                MostrarAlerta(id_usuario);
             }
         });
 
@@ -146,7 +147,7 @@ public class GalleryFragment extends Fragment {
         progressDoalog.show();
     }
 
-     private void   MostrarAlerta(){
+     private void   MostrarAlerta(String id_usuario){
          // get alert_dialog.xml view
          LayoutInflater li = LayoutInflater.from(getActivity());
          View promptsView = li.inflate(R.layout.alerta, null);
@@ -166,7 +167,7 @@ public class GalleryFragment extends Fragment {
                      public void onClick(DialogInterface dialog, int id) {
                          // get user input and set it to result
                          // edit text
-                         validarContrasena(userInput.getText().toString());
+                         validarContrasena(userInput.getText().toString(),id_usuario);
                      }
                  })
                  .setNegativeButton("Cancel",
@@ -183,7 +184,7 @@ public class GalleryFragment extends Fragment {
          alertDialog.show();
      }
 
-    private void validarContrasena(String value) {
+    private void validarContrasena(String value, String id_usuario) {
        String url = "http://aplicacionanyoza.atwebpages.com/index.php/usuario";
         showdialog();
         StringRequest peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -194,7 +195,7 @@ public class GalleryFragment extends Fragment {
                     List<String> items = new ArrayList<>();
                     if (arreglo.length() > 0) {
                         progressDoalog.dismiss();
-                        actualizaMontoRecarga (txtMonto.getText().toString());
+                        actualizaMontoRecarga (txtMonto.getText().toString(), id_usuario);
                     }else {
                         progressDoalog.dismiss();
                         Toast.makeText (getActivity(), "Contraseña incorrecta, intente nuevamente", Toast.LENGTH_SHORT).show();
@@ -217,7 +218,7 @@ public class GalleryFragment extends Fragment {
         @Override
         protected Map<String,String> getParams(){
             Map<String,String> params = new HashMap<String, String>();
-            params.put("idUsuario", usuarioLogueado);
+            params.put("idUsuario", id_usuario);
             params.put("clave",value);
             return params;
         }};
@@ -230,7 +231,7 @@ public class GalleryFragment extends Fragment {
 
 
 
-    private void actualizaMontoRecarga (String monto){
+    private void actualizaMontoRecarga (String monto ,String id_usuario){
         int montoRecarga = Integer.parseInt(monto);
         int montoActual = Integer.parseInt(usuarioTransferir.getSaldo());
 
@@ -243,7 +244,7 @@ public class GalleryFragment extends Fragment {
             public void onResponse(String response) {
                 try {
                     progressDoalog.dismiss();
-                    actualizaMontoOrigen (txtMonto.getText().toString());
+                    actualizaMontoOrigen (txtMonto.getText().toString(), id_usuario);
                 } catch (Exception e) {
                     progressDoalog.dismiss();
                     Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -273,7 +274,7 @@ public class GalleryFragment extends Fragment {
     }
 
 
-    private void actualizaMontoOrigen (String monto){
+    private void actualizaMontoOrigen (String monto, String id_usuario){
         String url = "http://aplicacionanyoza.atwebpages.com/index.php/usuario/recarga/origen";
         showdialog();
         StringRequest peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -301,7 +302,7 @@ public class GalleryFragment extends Fragment {
             @Override
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("idUsuario", usuarioLogueado);
+                params.put("idUsuario", id_usuario);
                 params.put("saldo", ""+ monto);
                 return params;
             }};

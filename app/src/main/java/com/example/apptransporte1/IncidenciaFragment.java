@@ -1,5 +1,6 @@
 package com.example.apptransporte1;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.apptransporte1.ui.login.UserRegister;
 
 
 public class IncidenciaFragment extends Fragment {
@@ -37,7 +40,8 @@ public class IncidenciaFragment extends Fragment {
         btnlistinc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-             //   Navigation.findNavController(v).navigate(R.id.listarIncidencia);
+                Intent intent = new Intent(getActivity().getApplicationContext(), ListarIncidencia.class);
+                startActivity(intent);
             }
         });
 
@@ -47,6 +51,7 @@ public class IncidenciaFragment extends Fragment {
         @Override
         public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
+
 
 
 

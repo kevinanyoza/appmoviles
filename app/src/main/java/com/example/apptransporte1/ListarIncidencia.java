@@ -27,31 +27,27 @@ import java.util.List;
 
 public class ListarIncidencia extends AppCompatActivity {
 
-EditText txtInc;
-Button btnbuscar;
-ListView lstInc;
+    EditText txtInc;
+
+    ListView lstInc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_incidencia);
         asignarReferencias();
+        String iduser = "1";
+        ListarIncidencia(iduser);
     }
     private void asignarReferencias(){
         txtInc = findViewById(R.id.txtInc);
-        btnbuscar = findViewById(R.id.btnBuscar);
         lstInc = findViewById(R.id.lstInc);
+        //btnbuscar = findViewById(R.id.btnBuscar);
         //String id_usuario = getActivity().getIntent().getStringExtra("id_usuario");
         //Toast.makeText(getActivity(), "hola"+id_usuario, Toast.LENGTH_SHORT).show();
-        btnbuscar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ListarIncidencia();
-            }
-        });
+
     }
-    private void ListarIncidencia(){
-       String texto = txtInc.getText().toString();
-       String url = "http://aplicacionanyoza.atwebpages.com/index.php/incidencias/";
+    private void ListarIncidencia( String iduser){
+       String url = "http://aplicacionanyoza.atwebpages.com/index.php/incidencias/"+ iduser;
 
         StringRequest peticion = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
@@ -62,7 +58,8 @@ ListView lstInc;
                     for (int i=0; i<arreglo.length();i++){
 
                         JSONObject objecto = arreglo.getJSONObject(i);
-                        items.add(objecto.getString("fecha")+ "---"+ objecto.getString("tipo_incidencia")+"--"+objecto.getString("descripcion"));
+                       items.add(objecto.get("fecha")+ "---"+objecto.getString("tipo_transporte")+ "---"+objecto.getString("tipo_incidencia")+"--"+objecto.getString("descripcion"));
+                        //items.add(objecto.getString("descripcion"));
                     }
                     ArrayAdapter<String>adapter = new ArrayAdapter<>(ListarIncidencia.this, android.R.layout.simple_expandable_list_item_1,items);
                     lstInc.setAdapter(adapter);

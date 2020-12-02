@@ -46,8 +46,6 @@ public class ReportarIncidencias extends Fragment {
     ImageView picture;
     ImageButton btnfoto;
 
-
-
     private static final int REQUEST_PERMISSION_CAMERA = 101;
     private static final int REQUEST_IMAGE_CAMERA = 101;
 
@@ -97,14 +95,13 @@ public class ReportarIncidencias extends Fragment {
         btnenviarinc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registrarIncidencia();
+                registrarIncidencia(id_usuario);
             }
         });
 
         //registrarIncidencia();
         return v;
     }
-
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if(requestCode == REQUEST_PERMISSION_CAMERA){
@@ -138,20 +135,16 @@ public class ReportarIncidencias extends Fragment {
         }
     }
 
-    private void  registrarIncidencia(){
+    private void  registrarIncidencia(String id_usuario){
 
         String date = "24/11/2020";
         String transporte = sptransporte.getSelectedItem().toString();
         String incidencias = spincidencias.getSelectedItem().toString();
         String descripcion = txtdescrip.getText().toString();
-        String usuario = "1";
-
         String url = "http://aplicacionanyoza.atwebpages.com/index.php/registrarincidencia";
-
         StringRequest peticion = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 Toast.makeText(getActivity(), "Registro exitoso", Toast.LENGTH_SHORT).show();
 
             }
@@ -169,7 +162,7 @@ public class ReportarIncidencias extends Fragment {
                 parametros.put("tipotransporte",transporte);
                 parametros.put("tipoincidencia",incidencias);
                 parametros.put("descripcion",descripcion);
-                parametros.put("ususario",usuario);
+                parametros.put("ususario",id_usuario);
                 return  parametros;
             }
         };

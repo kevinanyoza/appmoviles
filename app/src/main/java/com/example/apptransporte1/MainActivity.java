@@ -110,13 +110,17 @@ public class MainActivity extends AppCompatActivity {
         intent2.putExtra("id_usuario",id_usuario );
         Intent intent3 = new Intent(getApplicationContext(), GalleryFragment.class);
         intent3.putExtra("id_usuario",id_usuario );
+
         Intent intent4 = new Intent(getApplicationContext(), Generarqr.class);
         intent4.putExtra("id_usuario",id_usuario );
         Intent intent5 = new Intent(getApplicationContext(), Generarqr.class);
         intent5.putExtra("monto_total",montototal );
 
-        //startActivity(intent);
+        Intent intent6 = new Intent(getApplicationContext(), ListarIncidencia.class);
+        intent6.putExtra("id_usuario",id_usuario );
 
+
+        //startActivity(intent);
 
     }
 
